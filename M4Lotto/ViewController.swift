@@ -19,21 +19,10 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNumberLabel(numLabel1)
-        setupNumberLabel(numLabel2)
-        setupNumberLabel(numLabel3)
-        setupNumberLabel(numLabel4)
-        setupNumberLabel(numLabel5)
-        setupNumberLabel(numLabel6)
-        setupNumberLabel(numLabel7)
-        numLabel7.backgroundColor = UIColor.purple
-        numLabel7.textColor = .white
     }
     
-    func setupNumberLabel(_ label: UILabel)
+    func setupNumberLabel(_ label: UILabel, _ rand: Int)
     {
-        let rand = Int.random(in: 1...45)
-        
         label.text = "\(rand)"
         
         switch rand
@@ -68,26 +57,36 @@ class ViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        numLabel1.layer.cornerRadius = numLabel1.bounds.width / 2
-        numLabel1.clipsToBounds = true
+        let labels = [numLabel1, numLabel2, numLabel3, numLabel4, numLabel5, numLabel6, numLabel7]
         
-        numLabel2.layer.cornerRadius = numLabel1.bounds.width / 2
-        numLabel2.clipsToBounds = true
+        var numbers: [Int] = []
         
-        numLabel3.layer.cornerRadius = numLabel1.bounds.width / 2
-        numLabel3.clipsToBounds = true
+        while numbers.count < labels.count
+        {
+            let num = Int.random(in: 1...45)
+            if (!numbers.contains(num))
+            {
+                numbers.append(num)
+            }
+        }
         
-        numLabel4.layer.cornerRadius = numLabel1.bounds.width / 2
-        numLabel4.clipsToBounds = true
+        let sortedNums = numbers.sorted()
         
-        numLabel5.layer.cornerRadius = numLabel1.bounds.width / 2
-        numLabel5.clipsToBounds = true
+        for (index,label) in labels.enumerated()
+        {
+            if (label == nil)
+            {
+                continue
+            }
+            
+            label?.layer.cornerRadius = label!.bounds.width / 2
+            label?.clipsToBounds = true;
+            
+            setupNumberLabel(label!, sortedNums[index])
+        }
         
-        numLabel6.layer.cornerRadius = numLabel1.bounds.width / 2
-        numLabel6.clipsToBounds = true
-        
-        numLabel7.layer.cornerRadius = numLabel1.bounds.width / 2
-        numLabel7.clipsToBounds = true
+        numLabel7.backgroundColor = .purple
+        numLabel7.textColor = .white
     
     }
 

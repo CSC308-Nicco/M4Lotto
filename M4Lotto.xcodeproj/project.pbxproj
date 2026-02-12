@@ -8,6 +8,7 @@
 
 /* Begin PBXFileReference section */
 		455591692F3B9742004C240B /* M4Lotto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = M4Lotto.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		457691542F3E31F50010EE81 /* M4LoopArray.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = M4LoopArray.playground; path = ../M4LoopArray.playground; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -45,6 +46,7 @@
 		455591602F3B9742004C240B = {
 			isa = PBXGroup;
 			children = (
+				457691542F3E31F50010EE81 /* M4LoopArray.playground */,
 				4555916B2F3B9742004C240B /* M4Lotto */,
 				4555916A2F3B9742004C240B /* Products */,
 			);
