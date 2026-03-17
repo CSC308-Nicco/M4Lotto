@@ -21,37 +21,29 @@ class ViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    func setupNumberLabel(_ label: UILabel, _ rand: Int)
+    
+    func getColors(for num: Int) -> (UIColor, UIColor)?
     {
-        label.text = "\(rand)"
-        
-        switch rand
+        switch num
         {
             case 1...10:
-            label.backgroundColor = UIColor.red
-            label.textColor = .white
+            return (.red, .white)
             
             case 11...20:
-            label.backgroundColor = UIColor.green
-            label.textColor = .black
+            return (.green, .black)
                 
             case 21...30:
-            label.backgroundColor = UIColor.blue
-            label.textColor = .white
+            return (.blue, .white)
                 
             case 31...40:
-            label.backgroundColor = UIColor.yellow
-            label.textColor = .black
+            return (.yellow, .black)
                 
             case 41...45:
-            label.backgroundColor = UIColor.green
-            label.textColor = .black
+            return (.green, .black)
             
             default:
-                break;
+                return nil
         }
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -74,15 +66,22 @@ class ViewController: UIViewController {
         
         for (index,label) in labels.enumerated()
         {
-            if (label == nil)
+            guard let numLabel = label else
             {
                 continue
             }
             
-            label?.layer.cornerRadius = label!.bounds.width / 2
-            label?.clipsToBounds = true;
+            numLabel.layer.cornerRadius = numLabel.bounds.width / 2
+            numLabel.clipsToBounds = true
             
-            setupNumberLabel(label!, sortedNums[index])
+            let colors = getColors(for: sortedNums[index])
+            guard let color1 = colors?.0, let color2 = colors?.1 else
+            {
+                return
+            }
+            
+            numLabel.backgroundColor = color1
+            numLabel.textColor = color2
         }
         
         numLabel7.backgroundColor = .purple
