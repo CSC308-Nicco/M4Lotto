@@ -73,6 +73,7 @@ class ViewController: UIViewController {
             
             numLabel.layer.cornerRadius = numLabel.bounds.width / 2
             numLabel.clipsToBounds = true
+            numLabel.text = String(sortedNums[index])
             
             let colors = getColors(for: sortedNums[index])
             guard let color1 = colors?.0, let color2 = colors?.1 else
