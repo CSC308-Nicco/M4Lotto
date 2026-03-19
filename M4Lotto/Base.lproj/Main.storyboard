@@ -89,13 +89,14 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="numLabel1" destination="uyP-v9-IO0" id="hq3-QB-uZo"/>
-                        <outlet property="numLabel2" destination="2GM-Pw-Xmi" id="sgL-vo-ED9"/>
-                        <outlet property="numLabel3" destination="waF-T6-Osh" id="F9e-8E-VHg"/>
-                        <outlet property="numLabel4" destination="Jgr-ib-mar" id="guf-aS-NH4"/>
-                        <outlet property="numLabel5" destination="xzZ-YD-Gom" id="jre-Va-7dJ"/>
-                        <outlet property="numLabel6" destination="8SQ-iW-4t3" id="Bak-Es-cUC"/>
                         <outlet property="numLabel7" destination="U7W-Zb-O20" id="zCk-fs-JbF"/>
+                        <outletCollection property="numLabels" destination="uyP-v9-IO0" collectionClass="NSMutableArray" id="9Y7-Lj-brN"/>
+                        <outletCollection property="numLabels" destination="2GM-Pw-Xmi" collectionClass="NSMutableArray" id="Ww9-yj-Hc9"/>
+                        <outletCollection property="numLabels" destination="waF-T6-Osh" collectionClass="NSMutableArray" id="DUP-sP-ujx"/>
+                        <outletCollection property="numLabels" destination="Jgr-ib-mar" collectionClass="NSMutableArray" id="uF2-Yg-vfQ"/>
+                        <outletCollection property="numLabels" destination="xzZ-YD-Gom" collectionClass="NSMutableArray" id="3ih-cb-gbU"/>
+                        <outletCollection property="numLabels" destination="8SQ-iW-4t3" collectionClass="NSMutableArray" id="CTt-zr-4SM"/>
+                        <outletCollection property="numLabels" destination="U7W-Zb-O20" collectionClass="NSMutableArray" id="4BB-Fp-eFb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

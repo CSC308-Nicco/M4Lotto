@@ -9,13 +9,9 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var numLabel1: UILabel!
-    @IBOutlet weak var numLabel2: UILabel!
-    @IBOutlet weak var numLabel3: UILabel!
-    @IBOutlet weak var numLabel4: UILabel!
-    @IBOutlet weak var numLabel5: UILabel!
-    @IBOutlet weak var numLabel6: UILabel!
     @IBOutlet weak var numLabel7: UILabel!
+    
+    @IBOutlet var numLabels: [UILabel]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,14 +42,21 @@ class ViewController: UIViewController {
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        let labels = [numLabel1, numLabel2, numLabel3, numLabel4, numLabel5, numLabel6, numLabel7]
+    override func viewWillTransition(to size: CGSize, with coordinator: any UIViewControllerTransitionCoordinator) {
+        coordinator.animate { _ in
+            for label in self.numLabels {
+                label.layer.cornerRadius = label.bounds.width / 2
+            }
+        }
+
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         var numbers: [Int] = []
         
-        while numbers.count < labels.count
+        while numbers.count < numLabels.count
         {
             let num = Int.random(in: 1...45)
             if (!numbers.contains(num))
@@ -62,20 +65,19 @@ class ViewController: UIViewController {
             }
         }
         
-        let sortedNums = numbers.sorted()
+        numbers.sort()
         
-        for (index,label) in labels.enumerated()
+        for (index,label) in numLabels.enumerated()
         {
-            guard let numLabel = label else
-            {
+            guard let numLabel = label as UILabel? else {
                 continue
             }
             
-            numLabel.layer.cornerRadius = numLabel.bounds.width / 2
+            numLabel.layer.cornerRadius = label.bounds.width / 2
             numLabel.clipsToBounds = true
-            numLabel.text = String(sortedNums[index])
+            numLabel.text = String(numbers[index])
             
-            let colors = getColors(for: sortedNums[index])
+            let colors = getColors(for: numbers[index])
             guard let color1 = colors?.0, let color2 = colors?.1 else
             {
                 return
