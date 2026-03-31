@@ -17,31 +17,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    
-    func getColors(for num: Int) -> (UIColor, UIColor)?
-    {
-        switch num
-        {
-            case 1...10:
-            return (.red, .white)
-            
-            case 11...20:
-            return (.green, .black)
-                
-            case 21...30:
-            return (.blue, .white)
-                
-            case 31...40:
-            return (.yellow, .black)
-                
-            case 41...45:
-            return (.green, .black)
-            
-            default:
-                return nil
-        }
-    }
-    
     override func viewWillTransition(to size: CGSize, with coordinator: any UIViewControllerTransitionCoordinator) {
         coordinator.animate { _ in
             for label in self.numLabels {
@@ -54,18 +29,7 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        var numbers: [Int] = []
-        
-        while numbers.count < numLabels.count
-        {
-            let num = Int.random(in: 1...45)
-            if (!numbers.contains(num))
-            {
-                numbers.append(num)
-            }
-        }
-        
-        numbers.sort()
+        var numbers: [Int] = Int.sortedRandomArray(count: 7, ranRange: 1...45)
         
         for (index,label) in numLabels.enumerated()
         {
@@ -73,18 +37,8 @@ class ViewController: UIViewController {
                 continue
             }
             
-            numLabel.layer.cornerRadius = label.bounds.width / 2
-            numLabel.clipsToBounds = true
-            numLabel.text = String(numbers[index])
+            label.setLottoNumber(number: numbers[index])
             
-            let colors = getColors(for: numbers[index])
-            guard let color1 = colors?.0, let color2 = colors?.1 else
-            {
-                return
-            }
-            
-            numLabel.backgroundColor = color1
-            numLabel.textColor = color2
         }
         
         numLabel7.backgroundColor = .purple
@@ -94,4 +48,3 @@ class ViewController: UIViewController {
 
 
 }
-
